@@ -1,0 +1,1 @@
+A python project, for upload mod on both website (CurseForge and Modrinth) with Mod object, usefull if you have a lot of file to upload.
