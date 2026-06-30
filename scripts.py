@@ -7,6 +7,8 @@ from mods.mcwru import McwRU
 from mods.mcwtmc import McwTMC
 from mods.mcwml import McwML
 from mods.mcwaurora import McwAurora
+from mods.mcwabnormals import McwAbnormals
+from mods.mcwsajevius import McwSajevius
 from pathlib import Path
 import os
 import curse.uploaderCurseForge
@@ -31,6 +33,10 @@ def getModObj(modid : str, version : str, modLoader : str) -> Mod:
             return McwML(version, modLoader)
         case "mcwaurora":
             return McwAurora(version, modLoader)
+        case "mcwabnormals":
+            return McwAbnormals(version, modLoader)
+        case "mcwsajevius":
+            return McwSajevius(version, modLoader)
     return Mod("null", "0", "0", "none", "none")
 
 def getModLoader(name_file : str) -> str: 
