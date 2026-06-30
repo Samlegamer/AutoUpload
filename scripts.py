@@ -54,10 +54,10 @@ def extractMCVersion(modid : str, name_file : str) -> str:
 def getMCVersions(mod : Mod) -> list[str]:
     return mod.versionsRanges()
 
-def getFileInDir(dir : str) -> list[Path]:
+def getFileInDir(modid : str, dir : str) -> list[Path]:
     filesToUpload = list()
     for file in Path(dir).iterdir():
-        if file.is_file() and file.name.__contains__(".jar"):
+        if file.is_file() and file.name.__contains__(".jar") and file.name.__contains__(modid):
             print(file.name)
             filesToUpload.append(file)
     return filesToUpload
@@ -66,7 +66,7 @@ if __name__ == "__main__":
     load_dotenv()
     modid = str(input("Enter the modid : ")) # ex: addonslib
     dir = "libs"
-    filesToUpload = getFileInDir(dir)
+    filesToUpload = getFileInDir(modid, dir)
     changelog = str(input("Enter the changelog : ")) # ex: fix bug 1
 
     for file in filesToUpload:
@@ -76,8 +76,8 @@ if __name__ == "__main__":
         versions = getMCVersions(mod=mod)
         version_number = getVersion(modid=modid, name_file=file.name)
 
-        TOKEN_CURSEFORGE = str(os.getenv("TOKEN_CURSEFORGE", "Pas de token curse forge"))
-        TOKEN_MODRINTH = str(os.getenv("TOKEN_MODRINTH", "Pas de token modrinth"))
+        TOKEN_CURSEFORGE = str(os.getenv("TOKEN_CURSEFORGE", ""))
+        TOKEN_MODRINTH = str(os.getenv("TOKEN_MODRINTH", ""))
         if mod.getCurseId() != 0:
             curse.uploaderCurseForge.makeAVersion(token=TOKEN_CURSEFORGE, jar=file, dir=dir, changelog=changelog, mod=mod)
         if mod.getModrinthId() != 0:
