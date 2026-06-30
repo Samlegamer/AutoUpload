@@ -13,7 +13,7 @@ def depByVer(version : str) -> list[Dependencie]:
         __dep.append(Dependencie("cavernsandchasms", "caverns-and-chasms", "438005", "tfjmPSbI", "optional"))
     return __dep
 
-class McwAurora(Mod):
+class McwAbnormals(Mod):
     def __init__(self, version : str, modLoader : str):
         super().__init__("mcwabnormals", "621057", "jZrq3qzM", version, modLoader, dependencies=defaultMcwDependencies()+depByVer(version))
     
