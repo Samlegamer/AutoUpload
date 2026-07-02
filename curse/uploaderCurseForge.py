@@ -16,6 +16,18 @@ def __Type(type : str) -> str:
         return "optionalDependency"
     else:
         return "requiredDependency"
+    
+def __JavaVersion(mod : Mod) -> str:
+    if mod.getVersion().__contains__("1.16.5"):
+        return "Java 8"
+    elif mod.getVersion().__contains__("1.17.1"):
+        return "Java 16"
+    elif mod.getVersion().__contains__("1.18.2" | "1.19" | "1.19.2" | "1.19.3" | "1.19.4" | "1.20.1" | "1.20.4"):
+        return "Java 17"
+    elif mod.getVersion().__contains__("26.1.2"):
+        return "Java 25"
+    else:
+        return "Java 21"
 
 def dependencies(mod : Mod) -> list:
     __dep = list()
@@ -33,13 +45,22 @@ def makeAVersion(token : str, jar : Path, dir : str, changelog : str, mod : Mod)
     maj_modLoader = __ModLoader(mod.getModLoader())
     CURSE_ID = int(mod.getCurseId())
     print(jar.name)
-    
+    __java = __JavaVersion(mod)
+
     metadata = json.dumps({
         "displayName": jar.name.replace(".jar", ""),
         "changelog": changelog,
         "changelogType": "markdown",
         "releaseType": "release",
-        "gameVersionNames": mod.versionsRanges() + [maj_modLoader],
+        "gameVersionNames": (
+            mod.versionsRanges()
+            + [maj_modLoader]
+            + [
+                __java,
+                "Client",
+                "Server"
+            ]
+        ),
         "relations": {
             "projects": dependencies(mod)
         }
