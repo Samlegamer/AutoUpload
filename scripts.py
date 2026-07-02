@@ -9,6 +9,7 @@ from mods.mcwml import McwML
 from mods.mcwaurora import McwAurora
 from mods.mcwabnormals import McwAbnormals
 from mods.mcwsajevius import McwSajevius
+from mods.mcwmysticbiomes import McwMysticsBiomes
 from pathlib import Path
 import os
 import curse.uploaderCurseForge
@@ -37,6 +38,8 @@ def getModObj(modid : str, version : str, modLoader : str) -> Mod:
             return McwAbnormals(version, modLoader)
         case "mcwsajevius":
             return McwSajevius(version, modLoader)
+        case "mcwmysticbiomes":
+            return McwMysticsBiomes(version, modLoader)
     return Mod("null", "0", "0", "none", "none")
 
 def getModLoader(name_file : str) -> str: 
