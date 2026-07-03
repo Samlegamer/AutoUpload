@@ -9,10 +9,10 @@ def dependencies(mod : Mod) -> list:
         id_modrinth = depedencie.getDIdModrinth()
         if id_modrinth != "null":
             __dep.append({
-                "version_id":"null",
-                "project_id":id_modrinth,
-                "file_name":"null",
-                "dependency_type":"optional"
+                "version_id": None,
+                "project_id": id_modrinth,
+                "file_name": None,
+                "dependency_type": depedencie.getDType()
             })
     return __dep
 

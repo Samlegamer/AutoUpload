@@ -22,7 +22,7 @@ def __JavaVersion(mod : Mod) -> str:
         return "Java 8"
     elif mod.getVersion().__contains__("1.17.1"):
         return "Java 16"
-    elif mod.getVersion().__contains__("1.18.2" or "1.19" or "1.19.2" or "1.19.3" or "1.19.4" or "1.20.1" or "1.20.4"):
+    elif any(v in mod.getVersion() for v in ("1.18.2", "1.19", "1.19.2", "1.19.3", "1.19.4", "1.20.1", "1.20.4")):
         return "Java 17"
     elif mod.getVersion().__contains__("26.1.2"):
         return "Java 25"
@@ -32,7 +32,7 @@ def __JavaVersion(mod : Mod) -> str:
 def dependencies(mod : Mod) -> list:
     __dep = list()
     for depedencie in mod.getDependencies():
-        id_curse = depedencie.getDIdCurse()
+        id_curse = int(depedencie.getDIdCurse())
         if id_curse != "null":
             __dep.append({
                         "slug": depedencie.getDSlug(),
