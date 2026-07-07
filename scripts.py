@@ -2,6 +2,7 @@ from mod import Mod
 from mods.addonslibmod import AddonsLibMod
 from mods.mcwbop import McwBOP
 from mods.mcwbyg import McwBYG
+from mods.mcwnaturesspirit import McwNaturesSpirit
 from mods.mcwquark import McwQuark
 from mods.mcwru import McwRU
 from mods.mcwtmc import McwTMC
@@ -40,6 +41,8 @@ def getModObj(modid : str, version : str, modLoader : str) -> Mod:
             return McwSajevius(version, modLoader)
         case "mcwmysticbiomes":
             return McwMysticsBiomes(version, modLoader)
+        case "mcwnaturesspirit":
+            return McwNaturesSpirit(version, modLoader)
     return Mod("null", "0", "0", "none", "none")
 
 def getModLoader(name_file : str) -> str: 
