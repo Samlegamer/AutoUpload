@@ -24,7 +24,7 @@ def __JavaVersion(mod : Mod) -> str:
         return "Java 16"
     elif any(v in mod.getVersion() for v in ("1.18.2", "1.19", "1.19.2", "1.19.3", "1.19.4", "1.20.1", "1.20.4")):
         return "Java 17"
-    elif mod.getVersion().__contains__("26.1.2"):
+    elif mod.getVersion().__contains__("26.1.2") or mod.getVersion().__contains__("26.2"):
         return "Java 25"
     else:
         return "Java 21"

@@ -74,12 +74,23 @@ def getFileInDir(modid : str, dir : str) -> list[Path]:
             filesToUpload.append(file)
     return filesToUpload
 
+def yesOrNoToBool(use : str) -> bool:
+    if use == "y":
+        return True
+    else:
+        return False
+
 if __name__ == "__main__":
     load_dotenv()
     modid = str(input("Enter the modid : ")) # ex: addonslib
     dir = "libs"
     filesToUpload = getFileInDir(modid, dir)
     changelog = str(input("Enter the changelog : ")) # ex: fix bug 1
+    use_modrinth = str(input("Do you want to upload on modrinth ? (y/n) : "))
+    use_curseforge = str(input("Do you want to upload on curseforge ? (y/n) : "))
+
+    b_use_modrinth = yesOrNoToBool(use_modrinth)
+    b_use_curseforge = yesOrNoToBool(use_curseforge)
 
     for file in filesToUpload:
         version_mc = extractMCVersion(modid=modid, name_file=file.name)
@@ -90,8 +101,8 @@ if __name__ == "__main__":
 
         TOKEN_CURSEFORGE = str(os.getenv("TOKEN_CURSEFORGE", ""))
         TOKEN_MODRINTH = str(os.getenv("TOKEN_MODRINTH", ""))
-        if mod.getCurseId() != 0:
+        if mod.getCurseId() != 0 and b_use_curseforge:
             curse.uploaderCurseForge.makeAVersion(token=TOKEN_CURSEFORGE, jar=file, dir=dir, changelog=changelog, mod=mod)
-        if mod.getModrinthId() != 0:
+        if mod.getModrinthId() != 0 and b_use_modrinth:
             modrinth.uploaderModrinth.makeAVersion(token=TOKEN_MODRINTH, jar=file, dir=dir, changelog=changelog, mod=mod, version_number=version_number)
     print("Finish Upload")

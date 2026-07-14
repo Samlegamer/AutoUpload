@@ -88,4 +88,6 @@ class McwBOP(Mod):
                 return ["1.21.10", "1.21.11"]
             case "26.1.2":
                 return ["26.1.2"]
+            case "26.2":
+                return ["26.2"]
         return "NONE"
