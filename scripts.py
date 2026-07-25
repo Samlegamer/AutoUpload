@@ -11,6 +11,7 @@ from mods.mcwaurora import McwAurora
 from mods.mcwabnormals import McwAbnormals
 from mods.mcwsajevius import McwSajevius
 from mods.mcwmysticbiomes import McwMysticsBiomes
+from mods.potionring import PotionRing
 from pathlib import Path
 import os
 import curse.uploaderCurseForge
@@ -43,6 +44,8 @@ def getModObj(modid : str, version : str, modLoader : str) -> Mod:
             return McwMysticsBiomes(version, modLoader)
         case "mcwnaturesspirit":
             return McwNaturesSpirit(version, modLoader)
+        case "potionring":
+            return PotionRing(version, modLoader)
     return Mod("null", "0", "0", "none", "none")
 
 def getModLoader(name_file : str) -> str: 

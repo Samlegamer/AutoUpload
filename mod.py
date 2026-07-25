@@ -75,3 +75,9 @@ def defaultMcwDependencies() -> list[Dependencie]:
         Dependencie("mcwwindows", "macaws-windows", "363569", "C7I0BCni", "optional"),
         Dependencie("mcwpaths", "macaws-paths-and-pavings", "629153", "VRLhWB91", "optional")
     ]
+
+def getVersionRange(version : str, *versions: str) -> bool:
+    for v in versions:
+        if version == v:
+            return True
+    return False
