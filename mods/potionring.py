@@ -7,7 +7,7 @@ def depByVer(version : str, modLoader : str) -> list[Dependencie]:
         if not getVersionRange(version, "1.16.5", "1.18.2", "1.19"):
             __dep.append(Dependencie("sizeshiftingpotions", "size-shifting-potions", "447440", "rfj2v0X6", "optional"))
     elif modLoader.__contains__("fabric"):
-        if getVersionRange(version, "26.2", "26.1", "26.1.1", "26.1.2", "1.21.11"):
+        if getVersionRange(version, "26.3", "26.2", "26.1", "26.1.1", "26.1.2", "1.21.11"):
             __dep.append(Dependencie("trinkets_updated", "trinkets-updated", "1509777", "XaT8sLP6", "required"))
         __dep.append(Dependencie("fabric_api", "fabric-api", "306612", "P7dR8mSH", "required"))
         __dep.append(Dependencie("sizeshiftingpotions", "size-shifting-potions", "447440", "rfj2v0X6", "optional"))
@@ -50,4 +50,6 @@ class PotionRing(Mod):
                 return ["26.1", "26.1.1", "26.1.2"]
             case "26.2":
                 return ["26.2"]
+            case "26.3":
+                return ["26.3"]
         return ["ERROR VERSION NOT REGISTRED"]
