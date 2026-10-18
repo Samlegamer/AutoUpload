@@ -5,7 +5,7 @@ def depByVer(version : str, modLoader : str) -> list[Dependencie]:
     if version == "1.16.5":
         __dep.append(Dependencie("betternether", "betternether-reforged", "526921", "null", "optional"))
         __dep.append(Dependencie("betterendforge", "betterend-re-forked", "537247", "null", "optional"))
-    elif modLoader.__contains__("fabric") and (version != "1.21.11" and version != "26.2"):
+    elif modLoader.__contains__("fabric") and (version != "1.21.11" and version != "26.2" and version != "26.3"):
         __dep.append(Dependencie("betterend", "betterend", "413596", "gc8OEnCC", "optional"))
         __dep.append(Dependencie("betternether", "betternether", "311377", "MpzVLzy5", "optional"))
     elif modLoader.__contains__("forge") and version == "1.20.1":
@@ -36,4 +36,6 @@ class McwBetters(Mod):
                 return ["1.21.11"]
             case "26.2":
                 return ["26.2"]
+            case "26.3":
+                return ["26.3"]
         return ["ERROR VERSION NOT REGISTRED"]
